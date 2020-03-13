@@ -1,0 +1,45 @@
+<resources>
+    <string name="app_name">MelvinToolBoxAndroid</string>
+    <string name="welcome">Bienvenue</string>
+    <string name="menu_cycle">Cycle de vie</string>
+    <string name="menu_save">Sauvegarde</string>
+    <string name="menu_permissions">Permissions</string>
+    <string name="menu_webservices">Webservices</string>
+    <string name="logout">Logout</string>
+    <string name="formulaire">Formulaire</string>
+    <string name="firstName">Firstname</string>
+
+
+    <string name="address">EmailAddress</string>
+    <string name="password">Password</string>
+    <string name="isen">ISEN</string>
+    <string name="valider">VALIDER</string>
+    <string name="connexion">Connexion</string>
+    <string name="bonjour">Bonjour</string>
+    <string name="description">description</string>
+    <string name="cycle">Cycle de vie</string>
+    <string name="save">Sauvegarde</string>
+    <string name="permission">Permissions</string>
+    <string name="services">Webservices</string>
+    <string name="lifeCycleText">Test</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="change">CHANGE</string>
+
+    <string name="date">Date</string>
+    <string name="changeDate">Change Date</string>
+    <string name="show">Show</string>
+    <string name="save2">Save</string>
+    <string name="access">Accès aux ressources</string>
+    <string name="longitude">Longitude</string>
+    <string name="select_img_desc">select</string>
+    <string name="permission_title">Accès aux informations Android</string>
+    <string name="phoneDesc">phoneDesc</string>
+    <string name="call_img">call</string>
+    <string name="latitude">Latitude</string>
+    <string name="lastName">Lastname</string>
+    <string name="name">Name</string>
+    <string name="emailAddress">Email</string>
+    <string name="this_is_a_new_fragment">This is a new fragment</string>
+    <string name="web_service_img">web</string>
+    <string name="random_profile_pic">random</string>
+</resources>
