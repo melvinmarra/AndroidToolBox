@@ -1,10 +1,12 @@
 package fr.isen.marra.toolboxandroid
 
+
+
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_permission_cell.view.*
 
@@ -28,4 +30,3 @@ class ContactAdapter(val contacts : List<String>) : RecyclerView.Adapter<Contact
         val contactName: TextView = contactView.contactName
     }
 }
-
