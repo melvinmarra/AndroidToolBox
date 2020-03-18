@@ -13,13 +13,14 @@ import android.graphics.Bitmap
 import android.os.Bundle
 import android.provider.ContactsContract
 import android.provider.MediaStore
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_permission.*
-import kotlinx.android.synthetic.main.activity_permission_cell.*
+
 
 
 class PermissionActivity : AppCompatActivity() {
@@ -34,8 +35,7 @@ class PermissionActivity : AppCompatActivity() {
     )
 
     private val contactPermission = arrayOf(
-        Manifest.permission.READ_CONTACTS,
-        Manifest.permission.WRITE_CONTACTS
+        Manifest.permission.READ_CONTACTS
     )
 
     val contacts = mutableListOf<String>()
@@ -133,35 +133,41 @@ class PermissionActivity : AppCompatActivity() {
            permManager.requestMultiplePermissions(this, contactPermission, 30)
         }
     }
-}
 
 
+    open class PermissionManager(val context: Context){
 
-
-
-open class PermissionManager(val context: Context){
-
-    fun requestAPermission(activity: Activity, perm: String, code: Int) {
-        ActivityCompat.requestPermissions(activity, arrayOf(perm), code)
-    }
-
-    fun isPermissionOk(perm: String): Boolean {
-        val result = ContextCompat.checkSelfPermission(context, perm)
-        return result == PackageManager.PERMISSION_GRANTED
-    }
-
-    fun requestMultiplePermissions(activity: Activity, perms: Array<String>, code: Int) {
-        ActivityCompat.requestPermissions(activity, perms, code)
-    }
-
-    fun arePermissionsOk(perms: Array<String>): Boolean {
-        for (p in perms) {
-            if (isPermissionOk(p))
-                continue
-            else
-                return false
+        fun requestAPermission(activity: Activity, perm: String, code: Int) {
+            ActivityCompat.requestPermissions(activity, arrayOf(perm), code)
         }
-        return true
-    }
 
+        fun isPermissionOk(perm: String): Boolean {
+            val result = ContextCompat.checkSelfPermission(context, perm)
+            return result == PackageManager.PERMISSION_GRANTED
+        }
+
+        fun requestMultiplePermissions(activity: Activity, perms: Array<String>, code: Int) {
+            ActivityCompat.requestPermissions(activity, perms, code)
+        }
+
+        fun arePermissionsOk(perms: Array<String>): Boolean {
+            for (p in perms) {
+                if (isPermissionOk(p))
+                    continue
+                else
+                    return false
+            }
+            return true
+        }
+
+    }
 }
+
+
+
+
+
+
+
+
+

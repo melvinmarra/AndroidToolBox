@@ -19,9 +19,9 @@ class WebserviceActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_webservice)
 
-        buttonGenerateRandomUsers.setOnClickListener {
+
             displayRandomUsers()
-        }
+
 
         Log.d("STATUS", "onCreate")
     }
@@ -34,8 +34,7 @@ class WebserviceActivity : AppCompatActivity() {
 
     private fun displayRandomUsers() {
         val queue = Volley.newRequestQueue(this)
-        val url =
-            "https://randomuser.me/api/?inc=name,location,email,picture&results=15&noinfo&nat=fr&format=pretty"
+        val url = "https://randomuser.me/api/?results=10&nat=fr"
 
         // Request a string response from the provided URL.
         val stringRequest = StringRequest(
