@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_home.*
-import kotlinx.android.synthetic.main.activity_login.*
 
 class HomeActivity : AppCompatActivity() {
 
@@ -45,5 +44,11 @@ class HomeActivity : AppCompatActivity() {
             val intent = Intent(this, PermissionActivity::class.java)
             startActivity(intent)
         }
+
+        webImg.setOnClickListener{
+            val intent = Intent(this, WebserviceActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
+
