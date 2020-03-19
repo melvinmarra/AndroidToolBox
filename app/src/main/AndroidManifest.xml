@@ -18,10 +18,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".dataRandomUser.Result"></activity>
-        <activity android:name=".randomUser" />
+
+        <activity android:name=".MainActivity" />
+        <activity android:name=".WebserviceAdapter" />
         <activity android:name=".WebserviceActivity" />
-        <activity android:name=".Contact" />
+        <activity android:name=".ContactAdapter" />
         <activity android:name=".PermissionActivity" />
         <activity android:name=".FormulaireActivity" />
         <activity android:name=".CycleActivity" />
