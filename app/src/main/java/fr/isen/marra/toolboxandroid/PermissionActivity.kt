@@ -19,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.activity_permission.*
 
 
@@ -45,6 +46,11 @@ class PermissionActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_permission)
+
+        buttonRetour.setOnClickListener {
+            val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
+        }
 
 
         imageView.setOnClickListener {
@@ -112,6 +118,7 @@ class PermissionActivity : AppCompatActivity() {
 
 
     private fun getContacts() {
+
        if (permManager.arePermissionsOk(contactPermission)) {
             val resolver: ContentResolver = contentResolver;
             val cursor = resolver.query(
@@ -122,10 +129,12 @@ class PermissionActivity : AppCompatActivity() {
                 while (cursor.moveToNext()) {
                     val name =
                         cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME))
+
                     contacts.add("  Nom : $name")
+
                 }
             } else {
-                Toast.makeText(applicationContext, "No contacts available!", Toast.LENGTH_SHORT)
+                Toast.makeText(applicationContext, "No contacts found!", Toast.LENGTH_SHORT)
                     .show()
             }
             cursor.close()
@@ -133,6 +142,8 @@ class PermissionActivity : AppCompatActivity() {
            permManager.requestMultiplePermissions(this, contactPermission, 30)
         }
     }
+
+
 
 
     open class PermissionManager(val context: Context){

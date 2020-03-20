@@ -1,12 +1,14 @@
 package fr.isen.marra.toolboxandroid
 
 import android.app.DatePickerDialog
+import android.content.Intent
 import android.os.Bundle
 import android.widget.DatePicker
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_formulaire.*
+import kotlinx.android.synthetic.main.activity_permission.*
 import org.json.JSONObject
 import java.io.File
 import java.text.ParseException
@@ -32,6 +34,11 @@ class FormulaireActivity : AppCompatActivity() {
             val firstName = firstName.text.toString()
             val lastName = LastName.text.toString()
             saveData(firstName,lastName,birthday)
+        }
+
+        buttonRetour3.setOnClickListener {
+            val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
         }
 
     }

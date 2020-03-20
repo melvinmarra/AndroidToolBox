@@ -1,99 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".LoginActivity">
 
     <Button
-        android:text="Valider"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/validateButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:background="#FF0000"
-        app:layout_constraintHorizontal_bias="0.498"
+        android:layout_marginEnd="8dp"
         android:layout_marginBottom="120dp"
-        app:layout_constraintBottom_toBottomOf="parent"/>
-
-    <TextView
-        android:text="Connexion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/loginTitle"
-        android:textStyle="bold"
-        android:textSize="30sp"
-        android:layout_marginStart="8dp"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginEnd="8dp"
+        android:background="#2196F3"
+        android:text="@string/confirm"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="132dp"
-        app:layout_constraintHorizontal_bias="0.498"/>
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
         android:id="@+id/password"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/validateButton"
-        android:layout_marginBottom="16dp"/>
-
-    <TextView
-        android:text="Mot de Passe :"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView3"
-        android:textColor="#F44336"
-        app:layout_constraintStart_toStartOf="@+id/password"
         android:layout_marginStart="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/password"/>
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="80dp"
+        android:ems="10"
+        android:hint="@string/mdp"
+        android:inputType="textPassword"
+        android:textColor="#6E6E6E"
+        app:layout_constraintBottom_toTopOf="@+id/validateButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
         android:id="@+id/identifiant"
-        app:layout_constraintBottom_toTopOf="@+id/password"
-        android:layout_marginStart="8dp"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="32dp"/>
-
-    <TextView
-        android:text="identifiant : "
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView4"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/identifiant"
-        app:layout_constraintStart_toStartOf="@+id/identifiant"
-        android:layout_marginStart="8dp"/>
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:ems="10"
+        android:hint="@string/id"
+        android:inputType="textPersonName"
+        android:textColor="#6E6E6E"
+        app:layout_constraintBottom_toTopOf="@+id/password"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <ImageView
+    <com.mikhaellopez.circularimageview.CircularImageView
+        android:id="@+id/logo_isen"
         android:layout_width="182dp"
         android:layout_height="104dp"
-        app:srcCompat="@drawable/logo_isen"
-        android:id="@+id/logo_isen"
-        app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="8dp"
+        app:civ_border_color="#2196F3"
+        app:civ_border_width="3dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginTitle"
-        android:layout_marginTop="36dp"
-        app:layout_constraintHorizontal_bias="0.497"/>
+        app:srcCompat="@drawable/logo_isen" />
+
+    <TextView
+        android:id="@+id/loginTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/connexion"
+        android:textColor="#6E6E6E"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

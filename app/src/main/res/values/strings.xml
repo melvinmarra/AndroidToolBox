@@ -5,15 +5,25 @@
     <string name="menu_save">Sauvegarde</string>
     <string name="menu_permissions">Permissions</string>
     <string name="menu_webservices">Webservices</string>
-    <string name="logout">Logout</string>
+    <string name="logout">Déconnexion</string>
     <string name="formulaire">Formulaire</string>
-    <string name="firstName">Firstname</string>
+    <string name="firstName">Prénom</string>
+    <string name="lastname">Nom de famille</string>
     <string name="contactM">Contact de Melvin Marra</string>
     <string name="info">Acces aux informations android</string>
-    <string name="RandomName">Name</string>
+    <string name="RandomName">Nom</string>
     <string name="RandomAddress">Adresse</string>
     <string name="RandomEmail">Email</string>
-    <string name="titleWebActivity">Web Activity</string>
-    <string name="buttonGenerate">Générer</string>
-
+    <string name="titleWebActivity">Web service</string>
+    <string name="generate">Générer utilisateurs</string>
+    <string name="connexion">Connexion</string>
+    <string name="confirm">Confirmer</string>
+    <string name="id">Identifiant</string>
+    <string name="mdp">Mot de passe</string>
+    <string name="ble">Bluetooth</string>
+    <string name="choice">Choisissez une activité</string>
+    <string name="num">Phone number</string>
+    <string name="retour">Retour</string>
+    <string name="lifeCycle">Cycle de vie</string>
+    <string name="dob">Date de naissance (appuyez ici)</string>
 </resources>

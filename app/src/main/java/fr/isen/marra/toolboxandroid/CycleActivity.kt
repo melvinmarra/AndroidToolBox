@@ -1,5 +1,6 @@
 package fr.isen.marra.toolboxandroid
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -14,6 +15,11 @@ class CycleActivity : AppCompatActivity() {
         setContentView(R.layout.activity_cycle_de_vie)
         texte += "onCreate()\n"
         lifeCycleTextView.text = texte
+
+        buttonRetour2.setOnClickListener {
+            val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun onPause() {

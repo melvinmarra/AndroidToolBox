@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".FormulaireActivity">
 
 
@@ -11,27 +12,29 @@
         android:id="@+id/nameLayout"
         android:layout_width="278dp"
         android:layout_height="52dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="64dp"
         android:text="Formulaire"
         android:textAlignment="center"
-        android:textColor="#FF0000"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/firstName"
+        android:textColor="#2196F3"
+        android:textSize="26sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <EditText
         android:id="@+id/firstName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="88dp"
+        android:layout_marginTop="76dp"
         android:ems="10"
-        android:inputType="textPersonName"
 
+        android:hint="@string/firstName"
+        android:inputType="textPersonName"
+        android:textColor="#6E6E6E"
         android:textIsSelectable="true"
+        android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nameLayout" />
@@ -40,88 +43,69 @@
         android:id="@+id/LastName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="76dp"
+        android:layout_marginTop="25dp"
         android:ems="10"
-        android:inputType="textPersonName"
 
+        android:hint="@string/lastname"
+        android:inputType="textPersonName"
+        android:textColor="#6E6E6E"
+        android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/firstName" />
-
 
     <Button
         android:id="@+id/buttonShow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="156dp"
-        android:background="#FF0000"
+        android:layout_marginTop="96dp"
+        android:layout_marginEnd="60dp"
+        android:background="#2196F3"
         android:text="Show"
         android:textColor="@android:color/background_light"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/dateOfBirth" />
 
     <Button
         android:id="@+id/buttonSave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#FF0000"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="96dp"
+        android:background="#2196F3"
         android:text="Save"
+        android:textColor="@android:color/background_light"
+        app:layout_constraintEnd_toStartOf="@+id/buttonShow"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dateOfBirth" />
+
+    <Button
+        android:id="@+id/buttonRetour3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#2196F3"
+        android:text="@string/retour"
         android:textColor="@android:color/background_light"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonShow"
-        app:layout_constraintVertical_bias="0.295" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="61dp"
-        android:layout_marginBottom="8dp"
-        android:text="@string/firstName"
-        app:layout_constraintBottom_toTopOf="@+id/firstName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nameLayout" />
-
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="49dp"
-        android:layout_marginBottom="8dp"
-        android:text="Lastname"
-        app:layout_constraintBottom_toTopOf="@+id/LastName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/firstName" />
-
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="13dp"
-        android:text="Date of birth"
-        app:layout_constraintBottom_toTopOf="@+id/dateOfBirth"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/LastName"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/dateOfBirth"
+        app:layout_constraintVertical_bias="0.736" />
 
     <TextView
         android:id="@+id/dateOfBirth"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="108dp"
-        android:text="calendar "
+        android:layout_marginTop="25dp"
+        android:text="@string/dob"
+        android:textColor="#6E6E6E"
+        android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/LastName" />
+        app:layout_constraintTop_toBottomOf="@+id/LastName" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
