@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="fr.isen.marra.toolboxandroid">
 
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.WRITE_CONTACTS" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -18,7 +20,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-
+        <activity android:name=".BluetoothAdapter"></activity>
+        <activity android:name=".BluetoothActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".WebserviceAdapter" />
         <activity android:name=".WebserviceActivity" />

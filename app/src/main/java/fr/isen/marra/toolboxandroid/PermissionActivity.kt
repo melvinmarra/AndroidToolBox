@@ -13,13 +13,11 @@ import android.graphics.Bitmap
 import android.os.Bundle
 import android.provider.ContactsContract
 import android.provider.MediaStore
-import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.activity_permission.*
 
 

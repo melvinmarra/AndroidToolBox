@@ -26,4 +26,10 @@
     <string name="retour">Retour</string>
     <string name="lifeCycle">Cycle de vie</string>
     <string name="dob">Date de naissance (appuyez ici)</string>
+    <string name="scanBleTxt">Lancer le scan bluetooth</string>
+    <string name="bleFail">Erreur, scan bluetooth non compatible</string>
+    <string name="nameDevice">Nom du device </string>
+    <string name="mac">Adresse mac</string>
+    <string name="rssi">RSSI</string>
+    <string name="BLE">Bluetooth</string>
 </resources>

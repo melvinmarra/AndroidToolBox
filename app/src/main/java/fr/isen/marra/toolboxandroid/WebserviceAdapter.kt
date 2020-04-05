@@ -17,7 +17,7 @@ class WebserviceAdapter(private val randomContacts : RandomUsers
 
         val view: View =
             LayoutInflater.from(parent.context).inflate(R.layout.activity_webservice_cell, parent, false)
-            Log.d("Tag", "onCreateViewHolderRandomUser")
+
         return ViewHolderRandom(view)
     }
 
@@ -35,7 +35,6 @@ class WebserviceAdapter(private val randomContacts : RandomUsers
             .load(randomContacts.results[position].picture.large)
             .into(holder.randomUserPicture)
 
-        Log.d("Tag", "onBindViewHolderRandomUser")
     }
 
 

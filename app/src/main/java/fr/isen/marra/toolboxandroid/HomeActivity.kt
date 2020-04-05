@@ -49,6 +49,11 @@ class HomeActivity : AppCompatActivity() {
             val intent = Intent(this, WebserviceActivity::class.java)
             startActivity(intent)
         }
+
+        imageBle.setOnClickListener{
+            val intent = Intent(this, BluetoothActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
 
