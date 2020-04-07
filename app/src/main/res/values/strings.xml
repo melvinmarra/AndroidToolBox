@@ -32,4 +32,6 @@
     <string name="mac">Adresse mac</string>
     <string name="rssi">RSSI</string>
     <string name="BLE">Bluetooth</string>
+    <string name="scanGo">Lancer le scan</string>
+    <string name="scanEnCours">Scan en cours … </string>
 </resources>

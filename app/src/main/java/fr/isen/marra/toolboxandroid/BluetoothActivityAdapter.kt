@@ -9,8 +9,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_bluetooth_cell.view.*
 
-class BleDeviceAdapter(private val scanResults: ArrayList<ScanResult>, private val deviceClickListener: (BluetoothDevice) -> Unit) :
-        RecyclerView.Adapter<BleDeviceAdapter.DevicesViewHolder>() {
+class BluetoothActivityAdapter(private val scanResults: ArrayList<ScanResult>, private val deviceClickListener: (BluetoothDevice) -> Unit) :
+        RecyclerView.Adapter<BluetoothActivityAdapter.DevicesViewHolder>() {
 
 
     class DevicesViewHolder(devicesView: View) : RecyclerView.ViewHolder(devicesView){
@@ -20,7 +20,7 @@ class BleDeviceAdapter(private val scanResults: ArrayList<ScanResult>, private v
         val deviceRSSI: TextView = devicesView.RSSIDevice
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BleDeviceAdapter.DevicesViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BluetoothActivityAdapter.DevicesViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.activity_bluetooth_cell, parent, false)
 
 
@@ -29,8 +29,8 @@ class BleDeviceAdapter(private val scanResults: ArrayList<ScanResult>, private v
 
     override fun getItemCount(): Int = scanResults.size
 
-    override fun onBindViewHolder(holder: BleDeviceAdapter.DevicesViewHolder, position: Int) {
-        holder.deviceName.text = scanResults[position].device.name ?: "Device Unknown"
+    override fun onBindViewHolder(holder: BluetoothActivityAdapter.DevicesViewHolder, position: Int) {
+        holder.deviceName.text = scanResults[position].device.name ?: "Unknown name"
         holder.deviceMac.text = scanResults[position].device.address
         holder.deviceRSSI.text = scanResults[position].rssi.toString()
         holder.layout.setOnClickListener{
