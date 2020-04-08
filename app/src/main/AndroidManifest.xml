@@ -27,7 +27,7 @@
         <activity android:name=".BleDetailAdapter" />
         <activity android:name=".BluetoothService" />
         <activity android:name=".BluetoothActivity" />
-        <activity android:name=".BluetoothActivityAdapter" />
+        <activity android:name=".BluetoothScan" />
         <activity android:name=".MainActivity" />
         <activity android:name=".WebserviceAdapter" />
         <activity android:name=".WebserviceActivity" />
