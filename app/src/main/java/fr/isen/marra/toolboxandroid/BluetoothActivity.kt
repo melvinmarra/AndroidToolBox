@@ -1,35 +1,32 @@
 package fr.isen.marra.toolboxandroid
 
-import android.app.Activity
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_bluetooth.*
-import android.bluetooth.BluetoothAdapter
-import android.bluetooth.BluetoothDevice
-import android.bluetooth.BluetoothManager
+import android.bluetooth.*
 import android.bluetooth.le.ScanCallback
 import android.bluetooth.le.ScanResult
 import android.content.Context
 import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.view.View
-import android.widget.Toast
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 
+import kotlinx.android.synthetic.main.activity_bluetooth.*
 
 class BluetoothActivity : AppCompatActivity() {
 
-    private lateinit var handler: Handler
     private var mScanning: Boolean = false
+    private var bluetoothGatt: BluetoothGatt? = null
+    private lateinit var handler: Handler
     private lateinit var adapter: BluetoothActivityAdapter
-    private val devices = ArrayList<ScanResult>()
+
 
     private val bluetoothAdapter: BluetoothAdapter? by lazy(LazyThreadSafetyMode.NONE) {
         val bluetoothManager = getSystemService(Context.BLUETOOTH_SERVICE) as BluetoothManager
         bluetoothManager.adapter
     }
+
 
     private val isBLEEnabled: Boolean
         get() = bluetoothAdapter?.isEnabled == true
@@ -37,78 +34,73 @@ class BluetoothActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bluetooth)
+        stateTextView.text = "Lancer le scan bluetooth"
 
-        buttonRetour5.setOnClickListener{
-            val intent = Intent(this, HomeActivity::class.java)
-            startActivity(intent)
-        }
+        DividerView.visibility = View.VISIBLE
+        progressBar.visibility = View.GONE
 
-        bleTextFail.visibility = View.GONE
-
-        bluetoothRecycler.adapter = BluetoothActivityAdapter(devices, ::onDeviceClicked)
-        bluetoothRecycler.layoutManager = LinearLayoutManager(this)
-
-        blePlaytxt.setOnClickListener {
+        play_iv.setOnClickListener {
             when {
                 isBLEEnabled -> {
-                    //init scan
-                    if (blePlaytxt.text == "@string/scanGo") {
-                        imageScan.setImageResource(android.R.drawable.ic_media_pause)
-                        blePlaytxt.text = "@string/scanEnCours"
-                        initBLEScan()
-                        initScan()
-                    } else if (blePlaytxt.text == "@string/scanEnCours") {
-                        imageScan.setImageResource(android.R.drawable.ic_media_play)
-                        blePlaytxt.text = "@string/scanGo"
-                        progressBar.visibility = View.INVISIBLE
-                    }
+                    initScan()
                 }
                 bluetoothAdapter != null -> {
-                    //ask for permission
-                    val enableBTIntent = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
-                    startActivityForResult(enableBTIntent, REQUEST_ENABLE_BT)
+                    val enableIntent = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
+                    startActivityForResult(enableIntent, 44)
                 }
                 else -> {
-                    //device is not compatible with your device
-                    bleTextFail.visibility = View.VISIBLE
+                    blefailedText.visibility = View.VISIBLE
                 }
             }
         }
     }
 
     private fun initScan() {
-        progressBar.visibility = View.VISIBLE
-        bleDivider.visibility = View.GONE
-
         handler = Handler()
 
-        scanLeDevice(true)
+        adapter = BluetoothActivityAdapter(arrayListOf(), ::onDeviceClicked)
+        bleRecyclerView.adapter = adapter
+        bleRecyclerView.layoutManager = LinearLayoutManager(this)
+
+        play_iv.setOnClickListener{scanLeDevice(true)}
     }
 
     private fun scanLeDevice(enable: Boolean) {
         bluetoothAdapter?.bluetoothLeScanner?.apply {
-            if (enable) {
-                Log.w("BLEScanActivity", "Scanning for devices")
-                handler.postDelayed({
+            DividerView.visibility = View.VISIBLE
+            when {
+                enable -> {
+                    handler.postDelayed({
+                        mScanning = false
+                        stopScan(leScanCallBack)
+                        play_iv.setImageResource(R.drawable.play_arrow)
+                        progressBar.visibility = View.GONE
+                        DividerView.visibility = View.VISIBLE
+                        stateTextView.text = "Lancer le scan bluetooth"
+                    }, 10000)
+                    mScanning = true
+                    startScan(leScanCallBack)
+                    play_iv.setImageResource(R.drawable.pause)
+                    DividerView.visibility = View.GONE
+                    progressBar.visibility = View.VISIBLE
+                    stateTextView.text = "Scan bluetooth en cours ..."
+                }
+                else -> {
                     mScanning = false
-                    stopScan(leScanCallback)
-                }, SCAN_PERIOD)
-                mScanning = true
-                startScan(leScanCallback)
-                adapter.clearResults()
-                adapter.notifyDataSetChanged()
-            } else {
-                mScanning = false
-                stopScan(leScanCallback)
+                    stopScan(leScanCallBack)
+                    play_iv.setImageResource(R.drawable.play_arrow)
+                    progressBar.visibility = View.GONE
+                    DividerView.visibility = View.VISIBLE
+                    stateTextView.text = "Lancer le scan bluetooth"
+                }
             }
         }
     }
 
-    private val leScanCallback = object : ScanCallback() {
+    private val leScanCallBack = object : ScanCallback() {
         override fun onScanResult(callbackType: Int, result: ScanResult) {
             super.onScanResult(callbackType, result)
-            Log.w("BLEScanActivity", "onResult()")
-            Log.w("BLEScanActivity", "CaAMarche ${result?.device}")
+            Log.w("BLEActivity", "${result.device}")
             runOnUiThread {
                 adapter.addDeviceToList(result)
                 adapter.notifyDataSetChanged()
@@ -116,53 +108,22 @@ class BluetoothActivity : AppCompatActivity() {
         }
     }
 
-    private fun initBLEScan() {
-        adapter = BluetoothActivityAdapter(
-                arrayListOf(),
-                ::onDeviceClicked
-        )
-        bluetoothRecycler.adapter = adapter
-        bluetoothRecycler.addItemDecoration(DividerItemDecoration(this, LinearLayoutManager.VERTICAL))
-
-        handler = Handler()
-
-        scanLeDevice(true)
-        blePlaytxt.setOnClickListener{
-            scanLeDevice(!mScanning)
+    override fun onPause() {
+        super.onPause()
+        if (isBLEEnabled) {
+            scanLeDevice(false)
+            play_iv.setImageResource(R.drawable.play_arrow)
+            progressBar.visibility = View.GONE
+            DividerView.visibility = View.VISIBLE
+            stateTextView.text = "Lancer le scan bluetooth"
         }
-
     }
 
     private fun onDeviceClicked(device: BluetoothDevice) {
-        val intent = Intent(this, BluetoothActivityAdapter::class.java)
+        val intent = Intent(this, BleDetails::class.java)
         intent.putExtra("ble_device", device)
         startActivity(intent)
     }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == REQUEST_ENABLE_BT) {
-            if (resultCode == Activity.RESULT_OK) {
-                if (isBLEEnabled) {
-                    Toast.makeText(this, "Bluetooth has been enabled", Toast.LENGTH_SHORT).show()
-                } else {
-                    Toast.makeText(this, "Bluetooth has been disabled", Toast.LENGTH_SHORT).show()
-                }
-            } else if (resultCode == Activity.RESULT_CANCELED) {
-                Toast.makeText(this, "Bluetooth enabling has been canceled", Toast.LENGTH_SHORT)
-                        .show()
-            }
-        }
-    }
-
-    override fun onStop() {
-        super.onStop()
-        scanLeDevice(false)
-    }
-
-
-    companion object {
-        private const val SCAN_PERIOD: Long = 10000
-        private const val REQUEST_ENABLE_BT = 44
-    }
 }
+
+

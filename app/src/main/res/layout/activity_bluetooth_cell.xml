@@ -2,40 +2,53 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/BLEDeviceLayout"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:id="@+id/cellBleLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <TextView
-        android:id="@+id/nameDevice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="12dp"
-        android:text="@string/nameDevice"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/RSSIDevice"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/MacAddress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="@string/mac"
-        app:layout_constraintStart_toEndOf="@+id/RSSIDevice"
-        app:layout_constraintTop_toBottomOf="@+id/nameDevice" />
-
-    <TextView
-        android:id="@+id/RSSIDevice"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
+        android:id="@+id/distanceTextView"
+        android:layout_width="94dp"
+        android:layout_height="90dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/circle"
+        android:backgroundTint="@color/colorPrimary"
+        android:gravity="center"
         android:text="@string/rssi"
-        android:textColor="@color/colorPrimary"
+        android:textAlignment="center"
+        android:textColor="@color/design_default_color_on_primary"
         android:textSize="30sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/nameBle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/nameDevice"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/distanceTextView"
+        app:layout_constraintTop_toTopOf="@+id/distanceTextView" />
+
+    <TextView
+        android:id="@+id/AddressBle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/mac"
+        app:layout_constraintBottom_toBottomOf="@+id/distanceTextView"
+        app:layout_constraintEnd_toEndOf="@+id/nameBle"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/nameBle"
+        app:layout_constraintTop_toBottomOf="@+id/nameBle"
+        app:layout_constraintVertical_bias="0.214" />
 </androidx.constraintlayout.widget.ConstraintLayout>

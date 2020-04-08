@@ -11,6 +11,8 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -20,13 +22,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Attributes"></activity>
+        <activity android:name=".Attributes"/>
         <activity android:name=".BleDetails" />
         <activity android:name=".BleDetailAdapter" />
-        <activity android:name=".BluetoothInformations" />
         <activity android:name=".BluetoothService" />
-        <activity android:name=".BluetoothAdapter" />
         <activity android:name=".BluetoothActivity" />
+        <activity android:name=".BluetoothActivityAdapter" />
         <activity android:name=".MainActivity" />
         <activity android:name=".WebserviceAdapter" />
         <activity android:name=".WebserviceActivity" />

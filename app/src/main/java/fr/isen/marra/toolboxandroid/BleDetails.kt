@@ -6,7 +6,6 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_ble_details.*
-import kotlinx.android.synthetic.main.activity_bluetooth_cell.nameDevice
 
 
 class BleDetails : AppCompatActivity() {
