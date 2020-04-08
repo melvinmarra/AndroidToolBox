@@ -20,7 +20,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".BluetoothAdapter"></activity>
+        <activity android:name=".Attributes"></activity>
+        <activity android:name=".BleDetails" />
+        <activity android:name=".BleDetailAdapter" />
+        <activity android:name=".BluetoothInformations" />
+        <activity android:name=".BluetoothService" />
+        <activity android:name=".BluetoothAdapter" />
         <activity android:name=".BluetoothActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".WebserviceAdapter" />
