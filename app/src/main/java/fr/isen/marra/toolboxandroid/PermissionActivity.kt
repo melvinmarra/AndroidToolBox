@@ -20,8 +20,6 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_permission.*
 
-
-
 class PermissionActivity : AppCompatActivity() {
 
     private val permManager = PermissionManager(this)
@@ -62,11 +60,10 @@ class PermissionActivity : AppCompatActivity() {
     @SuppressLint("MissingSuperCall")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 
-
         if (resultCode == Activity.RESULT_OK && requestCode == 1000) {
             imageView.setImageURI(data?.data)
         }else if (resultCode == Activity.RESULT_OK && requestCode == 1001) {
-            var bmp = data?.extras?.get("data") as Bitmap
+            val bmp = data?.extras?.get("data") as Bitmap
             imageView.setImageBitmap(bmp)
         }
     }
@@ -142,9 +139,6 @@ class PermissionActivity : AppCompatActivity() {
 
     open class PermissionManager(val context: Context){
 
-        fun requestAPermission(activity: Activity, perm: String, code: Int) {
-            ActivityCompat.requestPermissions(activity, arrayOf(perm), code)
-        }
 
         fun isPermissionOk(perm: String): Boolean {
             val result = ContextCompat.checkSelfPermission(context, perm)

@@ -42,7 +42,8 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textWeb"
-        app:srcCompat="@drawable/ble" />
+        app:srcCompat="@drawable/ble"
+        android:contentDescription="@string/contentHomeBle" />
 
     <TextView
         android:id="@+id/textBle"
@@ -63,7 +64,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textSauvegarde"
         app:srcCompat="@drawable/download"
-        tools:ignore="VectorDrawableCompat" />
+        tools:ignore="VectorDrawableCompat"
+        android:contentDescription="@string/contentHomeWeb" />
 
     <TextView
         android:id="@+id/textWeb"
@@ -84,7 +86,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textCycle"
         app:srcCompat="@drawable/call"
-        tools:ignore="VectorDrawableCompat" />
+        tools:ignore="VectorDrawableCompat"
+        android:contentDescription="@string/contentHomePermission" />
 
     <TextView
         android:id="@+id/textPermission"
@@ -105,7 +108,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/welcomeTextView"
         app:srcCompat="@drawable/sd"
-        tools:ignore="VectorDrawableCompat" />
+        tools:ignore="VectorDrawableCompat"
+        android:contentDescription="@string/contentHomeSave" />
 
     <TextView
         android:id="@+id/textCycle"
@@ -123,7 +127,7 @@
         android:layout_height="80dp"
         android:layout_marginStart="64dp"
         android:layout_marginTop="88dp"
-        android:contentDescription="TODO"
+        android:contentDescription="@string/contentHomeCycle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/welcomeTextView"
         app:srcCompat="@drawable/message"

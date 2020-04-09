@@ -35,7 +35,8 @@
         android:textColor="#6E6E6E"
         app:layout_constraintBottom_toTopOf="@+id/validateButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:autofillHints="" />
 
     <EditText
         android:id="@+id/identifiant"
@@ -49,7 +50,8 @@
         android:textColor="#6E6E6E"
         app:layout_constraintBottom_toTopOf="@+id/password"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:autofillHints="" />
 
     <com.mikhaellopez.circularimageview.CircularImageView
         android:id="@+id/logo_isen"

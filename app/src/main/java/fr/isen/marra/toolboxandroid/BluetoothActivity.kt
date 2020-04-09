@@ -18,13 +18,12 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_bluetooth.*
-import java.util.jar.Manifest
 import kotlin.collections.ArrayList
 
 
 class BluetoothActivity : AppCompatActivity() {
 
-    private val permManager = PermissionActivity.PermissionManager(this)
+    private val permManager = PermissionManager(this)
     private val blePermissions = arrayOf(
             android.Manifest.permission.BLUETOOTH_ADMIN,
             android.Manifest.permission.ACCESS_FINE_LOCATION
@@ -179,17 +178,6 @@ class BluetoothActivity : AppCompatActivity() {
         super.onStop()
         scanLeDevice(false)
     }
-
-    /*override fun onPause() {
-        super.onPause()
-        if (isBLEEnabled) {
-            scanLeDevice(false)
-            play_iv.setImageResource(R.drawable.play_arrow)
-            progressBar.visibility = View.GONE
-            divider.visibility = View.VISIBLE
-            state_tv.text = scanInProcess
-        }
-    }*/
 
 
     open class PermissionManager(val context: Context){

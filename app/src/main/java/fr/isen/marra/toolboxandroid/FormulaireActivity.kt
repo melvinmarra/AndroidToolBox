@@ -100,10 +100,6 @@ class FormulaireActivity : AppCompatActivity() {
 
     }
 
-
-
-
-
     private fun calculAge(date: String): Int {
 
         var age = 0

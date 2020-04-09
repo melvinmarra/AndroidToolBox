@@ -44,19 +44,19 @@ class WebserviceAdapter(private val randomUser: RandomUsers, val context: Contex
 
 
         fun getData(position: Int) {
-            val nomUser =
+            val userName =
                 randomUser.results[position].name.first + "" + randomUser.results[position].name.last
-            val adresse =
+            val userAdress =
                 randomUser.results[position].location.street.number.toString() + " " + randomUser.results[position].location.street.name + "" + randomUser.results[position].location.city + "" + randomUser.results[position].location.state
-            val email = randomUser.results[position].email
+            val userEmail = randomUser.results[position].email
 
             Picasso.get()
                 .load(randomUser.results[position].picture.medium)
                 .into(randomUserPicture)
 
-            randomUserName.text = nomUser
-            randomUserAddress.text = adresse
-            randomUserEmail.text = email
+            randomUserName.text = userName
+            randomUserAddress.text = userAdress
+            randomUserEmail.text = userEmail
 
             randomUserDisplay.setOnClickListener {
                 peopleClickListener.invoke(randomUser.results[position])

@@ -51,5 +51,14 @@
     <string name="postcode">Code postal</string>
     <string name="pays">Pays</string>
     <string name="nom">Nom</string>
+    <string name="show">Voir</string>
+    <string name="saisie">Saisissez une valeur</string>
+    <string name="contentBle">Image play et pause du scan ble</string>
+    <string name="contentHomeCycle">Bouton pour acceder au cycle de vie de l application</string>
+    <string name="contentHomeWeb">Bouton pour acceder a la generation de profil aleatoire</string>
+    <string name="contentHomePermission">Bouton qui permet d acceder au repertoire</string>
+    <string name="contentHomeBle">Bouton qui permet d acceder a la fonctionnalite ble</string>
+    <string name="contentHomeSave">Bouton qui permet d enregistrer son profil</string>
+    <string name="contentPermissionCamera">Permet de choir une photo de profil</string>
 
 </resources>

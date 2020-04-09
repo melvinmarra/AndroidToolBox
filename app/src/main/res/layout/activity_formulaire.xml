@@ -13,7 +13,7 @@
         android:layout_width="278dp"
         android:layout_height="52dp"
         android:layout_marginTop="64dp"
-        android:text="Formulaire"
+        android:text="@string/formulaire"
         android:textAlignment="center"
         android:textColor="#2196F3"
         android:textSize="26sp"
@@ -29,7 +29,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="76dp"
         android:ems="10"
-
         android:hint="@string/firstName"
         android:inputType="textPersonName"
         android:textColor="#6E6E6E"
@@ -37,7 +36,8 @@
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nameLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/nameLayout"
+        android:autofillHints="" />
 
     <EditText
         android:id="@+id/LastName"
@@ -45,35 +45,35 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:ems="10"
-
         android:hint="@string/lastname"
         android:inputType="textPersonName"
         android:textColor="#6E6E6E"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/firstName" />
+        app:layout_constraintTop_toBottomOf="@+id/firstName"
+        android:autofillHints="" />
 
     <Button
         android:id="@+id/buttonShow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="110dp"
+        android:layout_height="50dp"
         android:layout_marginTop="96dp"
         android:layout_marginEnd="60dp"
         android:background="#2196F3"
-        android:text="Show"
+        android:text="@string/show"
         android:textColor="@android:color/background_light"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dateOfBirth" />
 
     <Button
         android:id="@+id/buttonSave"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="110dp"
+        android:layout_height="50dp"
         android:layout_marginStart="60dp"
         android:layout_marginTop="96dp"
         android:background="#2196F3"
-        android:text="Save"
+        android:text="@string/menu_save"
         android:textColor="@android:color/background_light"
         app:layout_constraintEnd_toStartOf="@+id/buttonShow"
         app:layout_constraintHorizontal_bias="0.0"

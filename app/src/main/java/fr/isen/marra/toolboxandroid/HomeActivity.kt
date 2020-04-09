@@ -21,23 +21,12 @@ class HomeActivity : AppCompatActivity() {
         cycleImg.setOnClickListener {
             val intent = Intent(this, CycleActivity::class.java)
             startActivity(intent)
-
         }
 
-        val onClickListener: Any = saveImg.setOnClickListener {
+        saveImg.setOnClickListener {
             val intent = Intent(this, FormulaireActivity::class.java)
             startActivity(intent)
 
-        }
-
-        logoutButton.setOnClickListener {
-            Toast.makeText(applicationContext, "Déconnexion réussi !", Toast.LENGTH_SHORT).show()
-            this.finish()
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
-            val editor = sharedPreferences.edit()
-            editor.clear()
-            editor.apply()
         }
 
         permImg.setOnClickListener {
@@ -53,6 +42,16 @@ class HomeActivity : AppCompatActivity() {
         imageBle.setOnClickListener{
             val intent = Intent(this, BluetoothActivity::class.java)
             startActivity(intent)
+        }
+
+        logoutButton.setOnClickListener {
+            Toast.makeText(applicationContext, "Déconnexion réussi !", Toast.LENGTH_SHORT).show()
+            this.finish()
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            val editor = sharedPreferences.edit()
+            editor.clear()
+            editor.apply()
         }
     }
 }

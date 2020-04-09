@@ -7,13 +7,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_ble_details.*
 
-
 class BleDetails : AppCompatActivity() {
 
     private var bluetoothGatt: BluetoothGatt? = null
     private var TAG: String = "services"
-    private lateinit var adapter: BleDetailAdapter
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -94,7 +91,7 @@ class BleDetails : AppCompatActivity() {
 
     companion object {
         private const val STATE_DISCONNECTED = "déconnecté"
-        private const val STATE_CONNECTING = 1
+       // private const val STATE_CONNECTING = 1
         private const val STATE_CONNECTED = "Connecté"
        /* const val ACTION_GATT_CONNECTED = "com.example.bluetooth.le.ACTION_GATT_CONNECTED"
         const val ACTION_GATT_DISCONNECTED = "com.example.bluetooth.le.ACTION_GATT_DISCONNECTED"
