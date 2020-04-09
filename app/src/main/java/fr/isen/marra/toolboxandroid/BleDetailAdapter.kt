@@ -85,7 +85,6 @@ class BleDetailAdapter(serviceList: MutableList<BluetoothService>, var context: 
 
         holder.uuid.text = uuid.toString()
 
-        ble?.readCharacteristic(characteristic)
         holder.value.text = ""
 
         if (characteristic.uuid == UUID.fromString("466c9abc-f593-11e8-8eb2-f2801f1b9fd1") && notifier){

@@ -74,7 +74,6 @@ class BleDetails : AppCompatActivity() {
             val value = byteArrayToHexString(characteristic.value)
             Log.e("TAG", "onCharacteristicChanged: " + value + " UUID " + characteristic.uuid.toString())
             runOnUiThread{detailsView.adapter?.notifyDataSetChanged()}
-            adapter.notifyDataSetChanged()
         }
     }
 
