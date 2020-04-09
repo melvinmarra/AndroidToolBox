@@ -18,32 +18,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/properties_action"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="10dp"
-        android:textSize="16sp"
-        android:text="@string/properties"
-        android:textStyle="italic"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name_action" />
-
 
     <TextView
         android:id="@+id/UUID_action"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="10dp"
-        android:textSize="16sp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="8dp"
         android:text="@string/uuid"
+        android:textSize="16sp"
         android:textStyle="italic"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/properties_action" />
-
-
+        app:layout_constraintTop_toBottomOf="@+id/name_action" />
 
     <TextView
         android:id="@+id/value_action"

@@ -20,7 +20,7 @@ import com.thoughtbot.expandablerecyclerview.viewholders.GroupViewHolder
 import kotlinx.android.synthetic.main.activity_ble_action_cell.view.*
 import kotlinx.android.synthetic.main.activity_bluetooth_detail_cell.view.*
 import kotlinx.android.synthetic.main.bluetooth_communication_cell.view.*
-
+import java.util.*
 
 
 class BleDetailAdapter(serviceList: MutableList<BluetoothService>, var context: Context, gatt: BluetoothGatt?):
@@ -63,7 +63,6 @@ class BleDetailAdapter(serviceList: MutableList<BluetoothService>, var context: 
 
     class CharacteristicViewHolder(itemView: View) : ChildViewHolder(itemView) {
         val name: TextView = itemView.name_action
-        val properties: TextView = itemView.properties_action
         val uuid: TextView = itemView.UUID_action
         val value: TextView = itemView.value_action
         val write: TextView = itemView.writeButton_action
@@ -86,25 +85,25 @@ class BleDetailAdapter(serviceList: MutableList<BluetoothService>, var context: 
 
         holder.uuid.text = uuid.toString()
 
-        holder.properties.text = "${proprieties(characteristic.properties)}"
-
         ble?.readCharacteristic(characteristic)
         holder.value.text = ""
 
+        if (characteristic.uuid == UUID.fromString("466c9abc-f593-11e8-8eb2-f2801f1b9fd1") && notifier){
+            holder.value.text =  "${byteArrayToHexString(characteristic.value)}"
+        } else if (characteristic.value != null) {
+            holder.value.text =  "${String (characteristic.value)}"
+        } else {
+            holder.value.text =  ""
+        }
 
         holder.read.setOnClickListener {
             ble?.readCharacteristic(characteristic)
-            if (characteristic.value != null) {
-                holder.value.text = "${String(characteristic.value)}"
-            } else {
-                holder.value.text = ""
-            }
         }
 
 
         holder.write.setOnClickListener {
-            val dialog = AlertDialog.Builder(context)
 
+            val dialog = AlertDialog.Builder(context)
             val editView = View.inflate(context, R.layout.bluetooth_communication_cell, null)
 
             dialog.setView(editView)
@@ -170,23 +169,5 @@ class BleDetailAdapter(serviceList: MutableList<BluetoothService>, var context: 
                 gatt.writeDescriptor(descriptor)
             }
         }
-    }
-
-    private fun proprieties(property: Int): StringBuilder {
-
-        val sb = StringBuilder()
-
-        if (property and BluetoothGattCharacteristic.PROPERTY_WRITE != 0) {
-            sb.append("ECRIRE")
-        }
-        if (property and BluetoothGattCharacteristic.PROPERTY_READ != 0) {
-            sb.append(" LIRE")
-        }
-        if (property and BluetoothGattCharacteristic.PROPERTY_NOTIFY != 0) {
-            sb.append(" NOTIFIER")
-        }
-        if (sb.isEmpty()) sb.append("Aucune")
-
-        return sb
     }
 }
