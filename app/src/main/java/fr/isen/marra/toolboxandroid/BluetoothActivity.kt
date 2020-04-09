@@ -44,17 +44,15 @@ class BluetoothActivity : AppCompatActivity() {
         play_iv.setOnClickListener {
             when {
                 isBLEEnabled -> {
-                    //init scan
-                        initBLEScan()
-                        initScan()
+
+                    initBLEScan()
+                    initScan()
                 }
                 bluetoothAdapter != null -> {
-                    //ask for permission
                     val enableBTIntent = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
                     startActivityForResult(enableBTIntent, 44)
                 }
                 else -> {
-                    //device is not compatible with your device
                     bleTextFailed.visibility = View.VISIBLE
                 }
             }
@@ -75,32 +73,35 @@ class BluetoothActivity : AppCompatActivity() {
     private fun scanLeDevice(enable: Boolean) {
         bluetoothAdapter?.bluetoothLeScanner?.apply {
             divider.visibility = View.VISIBLE
-            if (enable) {
-                Log.w("BLE", "Scanning for devices")
-                handler.postDelayed({
+            when {
+                enable -> {
+                    handler.postDelayed({
+                        mScanning = false
+                        stopScan(leScanCallback)
+                        play_iv.setImageResource(R.drawable.play_arrow)
+                        progressBar.visibility = View.GONE
+                        divider.visibility = View.VISIBLE
+                        state_tv.text = playScan
+                    }, 10000)
+
+                    mScanning = true
+                    startScan(leScanCallback)
+                    play_iv.setImageResource(R.drawable.pause)
+                    progressBar.visibility = View.GONE
+                    divider.visibility = View.VISIBLE
+                    state_tv.text = scanInProcess
+                    adapter.clearResults()
+                    adapter.notifyDataSetChanged()
+                }
+
+                else -> {
                     mScanning = false
                     stopScan(leScanCallback)
                     play_iv.setImageResource(R.drawable.play_arrow)
                     progressBar.visibility = View.GONE
                     divider.visibility = View.VISIBLE
                     state_tv.text = playScan
-                }, 60000)
-
-                mScanning = true
-                startScan(leScanCallback)
-                play_iv.setImageResource(R.drawable.pause)
-                progressBar.visibility = View.GONE
-                divider.visibility = View.VISIBLE
-                state_tv.text = scanInProcess
-                adapter.clearResults()
-                adapter.notifyDataSetChanged()
-            } else {
-                mScanning = false
-                stopScan(leScanCallback)
-                play_iv.setImageResource(R.drawable.play_arrow)
-                progressBar.visibility = View.GONE
-                divider.visibility = View.VISIBLE
-                state_tv.text = playScan
+                }
             }
         }
     }
@@ -117,10 +118,7 @@ class BluetoothActivity : AppCompatActivity() {
     }
 
     private fun initBLEScan() {
-        adapter = BluetoothScan(
-                arrayListOf(),
-                ::onDeviceClicked
-        )
+        adapter = BluetoothScan(arrayListOf(), ::onDeviceClicked)
         recyclerViewBle.adapter = adapter
         recyclerViewBle.addItemDecoration(DividerItemDecoration(this, LinearLayoutManager.VERTICAL))
 
@@ -148,8 +146,7 @@ class BluetoothActivity : AppCompatActivity() {
                     Toast.makeText(this, "Bluetooth disable", Toast.LENGTH_SHORT).show()
                 }
             } else if (resultCode == Activity.RESULT_CANCELED) {
-                Toast.makeText(this, "Bluetooth enabling cancel", Toast.LENGTH_SHORT)
-                        .show()
+                Toast.makeText(this, "Bluetooth enabling cancel", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -158,4 +155,15 @@ class BluetoothActivity : AppCompatActivity() {
         super.onStop()
         scanLeDevice(false)
     }
+
+    /*override fun onPause() {
+        super.onPause()
+        if (isBLEEnabled) {
+            scanLeDevice(false)
+            play_iv.setImageResource(R.drawable.play_arrow)
+            progressBar.visibility = View.GONE
+            divider.visibility = View.VISIBLE
+            state_tv.text = scanInProcess
+        }
+    }*/
 }

@@ -10,29 +10,25 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_bluetooth_cell.view.*
 
-class BluetoothScan(
-        private val devicesResults: ArrayList<ScanResult>,
-        private val deviceClickListener: (BluetoothDevice) -> Unit
-) :
-        RecyclerView.Adapter<BluetoothScan.DevicesViewHolder>() {
+class BluetoothScan(private val devicesResults: ArrayList<ScanResult>, private val deviceClickListener: (BluetoothDevice) -> Unit) :
+        RecyclerView.Adapter<BluetoothScan.ScanViewHolder>() {
+            class ScanViewHolder(scanView: View) : RecyclerView.ViewHolder(scanView) {
+                val layout = scanView.layoutCell
+                val name_device: TextView = scanView.name
+                val mac: TextView = scanView.address
+                val rssi: TextView = scanView.rssi_tv
+            }
 
-    class DevicesViewHolder(devicesView: View) : RecyclerView.ViewHolder(devicesView) {
-        val layout = devicesView.layoutCell
-        val name_device: TextView = devicesView.name
-        val mac: TextView = devicesView.address
-        val rssi: TextView = devicesView.rssi_tv
-    }
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ScanViewHolder {
+                val view =
+                  LayoutInflater.from(parent.context).inflate(R.layout.activity_bluetooth_cell, parent, false)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DevicesViewHolder {
-        val view =
-                LayoutInflater.from(parent.context).inflate(R.layout.activity_bluetooth_cell, parent, false)
-
-        return DevicesViewHolder(view)
+        return ScanViewHolder(view)
     }
 
     override fun getItemCount(): Int = devicesResults.size
 
-    override fun onBindViewHolder(holder: DevicesViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ScanViewHolder, position: Int) {
 
         val distance = devicesResults[position].rssi
         holder.name_device.text = devicesResults[position].device.name ?: "Nom inconnu"

@@ -61,16 +61,19 @@ class BleDetails : AppCompatActivity() {
         override fun onCharacteristicRead(gatt: BluetoothGatt?, characteristic: BluetoothGattCharacteristic, status: Int) {
             val value = characteristic.getStringValue(0)
             Log.e("TAG", "onCharacteristicRead: " + value + " UUID " + characteristic.uuid.toString())
+            runOnUiThread{detailsView.adapter?.notifyDataSetChanged()}
         }
 
         override fun onCharacteristicWrite(gatt: BluetoothGatt?, characteristic: BluetoothGattCharacteristic, status: Int) {
             val value = characteristic.value
             Log.e("TAG", "onCharacteristicWrite: " + value + " UUID " + characteristic.uuid.toString())
+            runOnUiThread{detailsView.adapter?.notifyDataSetChanged()}
         }
 
         override fun onCharacteristicChanged(gatt: BluetoothGatt?, characteristic: BluetoothGattCharacteristic) {
             val value = byteArrayToHexString(characteristic.value)
             Log.e("TAG", "onCharacteristicChanged: " + value + " UUID " + characteristic.uuid.toString())
+            runOnUiThread{detailsView.adapter?.notifyDataSetChanged()}
             adapter.notifyDataSetChanged()
         }
     }
