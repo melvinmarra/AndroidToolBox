@@ -24,8 +24,6 @@ import kotlinx.android.synthetic.main.activity_permission.*
 
 class PermissionActivity : AppCompatActivity() {
 
-    private val TAG = "Permission"
-
     private val permManager = PermissionManager(this)
     private val picturePermissions = arrayOf(
         Manifest.permission.CAMERA,
@@ -38,8 +36,6 @@ class PermissionActivity : AppCompatActivity() {
     )
 
     val contacts = mutableListOf<String>()
-
-    lateinit var currentPhotoPath: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
