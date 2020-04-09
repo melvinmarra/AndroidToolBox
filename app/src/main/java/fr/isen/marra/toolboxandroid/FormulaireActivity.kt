@@ -134,10 +134,6 @@ class FormulaireActivity : AppCompatActivity() {
         }
         return age
     }
-
-
-
-
 }
 
 

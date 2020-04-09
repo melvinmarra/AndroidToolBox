@@ -23,16 +23,10 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".WebserviceUserDetails"/>
-        <activity android:name=".Attributes" />
         <activity android:name=".BleDetails" />
-        <activity android:name=".BleDetailAdapter" />
-        <activity android:name=".BluetoothService" />
         <activity android:name=".BluetoothActivity" />
-        <activity android:name=".BluetoothScan" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".WebserviceAdapter" />
         <activity android:name=".WebserviceActivity" />
-        <activity android:name=".ContactAdapter" />
         <activity android:name=".PermissionActivity" />
         <activity android:name=".FormulaireActivity" />
         <activity android:name=".CycleActivity" />
