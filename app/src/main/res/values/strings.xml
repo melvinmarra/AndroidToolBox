@@ -45,4 +45,11 @@
     <string name="arrow_down">Arrow down</string>
     <string name="lancerScan">Lancer le scan bluetooth</string>
     <string name="etat">State</string>
+    <string name="userDetail">Details</string>
+    <string name="title">Titre</string>
+    <string name="city">Ville</string>
+    <string name="postcode">Code postal</string>
+    <string name="pays">Pays</string>
+    <string name="nom">Nom</string>
+
 </resources>

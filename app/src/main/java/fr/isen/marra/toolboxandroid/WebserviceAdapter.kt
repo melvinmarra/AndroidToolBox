@@ -1,6 +1,7 @@
 package fr.isen.marra.toolboxandroid
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -9,83 +10,57 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
+import fr.isen.marra.toolboxandroid.DataClass.RandomUsers
+import fr.isen.marra.toolboxandroid.DataClass.Results
+import kotlinx.android.synthetic.main.activity_webservice_cell.view.*
 
-class WebserviceAdapter(private val randomContacts : RandomUsers
-) : RecyclerView.Adapter<WebserviceAdapter.ViewHolderRandom>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderRandom {
+class WebserviceAdapter(private val randomUser: RandomUsers, val context: Context, private val peopleClickListener: (Results) -> Unit
+) : RecyclerView.Adapter<WebserviceAdapter.WebserviceAdapterViewHolder>() {
 
-        val view: View =
-            LayoutInflater.from(parent.context).inflate(R.layout.activity_webservice_cell, parent, false)
 
-        return ViewHolderRandom(view)
-    }
-
-    override fun getItemCount() = randomContacts.results.size
-
-    @SuppressLint("SetTextI18n")
-    override fun onBindViewHolder(holder: ViewHolderRandom, position: Int) {
-        holder.randomUserName.text =
-            randomContacts.results[position].name.first + "  " + randomContacts.results[position].name.last
-        holder.randomUserAddress.text =
-            randomContacts.results[position].location.city + "  " + randomContacts.results[position].location.postcode
-        holder.randomUserMail.text = randomContacts.results[position].email
-
-        Picasso.get()
-            .load(randomContacts.results[position].picture.large)
-            .into(holder.randomUserPicture)
-
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WebserviceAdapterViewHolder {
+        val inflater = LayoutInflater.from(parent.context)
+        val view: View = inflater.inflate(R.layout.activity_webservice_cell, parent, false)
+        return WebserviceAdapterViewHolder(view, randomUser, context, peopleClickListener)
     }
 
 
-    class ViewHolderRandom(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val randomUserName: TextView = itemView.findViewById(R.id.randomName)
-        val randomUserMail: TextView = itemView.findViewById(R.id.randomMail)
-        val randomUserAddress: TextView = itemView.findViewById(R.id.randomAddress)
-        val randomUserPicture: ImageView = itemView.findViewById((R.id.randomPicture))
+    override fun onBindViewHolder(holder: WebserviceAdapterViewHolder, position: Int) {
+        holder.getData(position)
     }
 
 
-    data class RandomUsers(val results: List<Result>)
+    override fun getItemCount(): Int = randomUser.results.size
 
-    data class Result(val email: String,
-                      val location: Location,
-                      val name: Name,
-                      val picture: Picture
-    )
+    class WebserviceAdapterViewHolder(View: View, private val randomUser: RandomUsers, val context: Context, private val peopleClickListener: (Results) -> Unit) :
+        RecyclerView.ViewHolder(View) {
 
-    data class Location(val city: String,
-                        val coordinates: Coordinates,
-                        val country: String,
-                        val postcode: Int,
-                        val state: String,
-                        val street: Street,
-                        val timezone: Timezone
-    )
-
-    data class Name(val first: String,
-                    val last: String,
-                    val title: String
-    )
-
-    data class Picture(val large: String,
-                       val medium: String,
-                       val thumbnail: String
-    )
-
-    data class Street(val name: String,
-                      val number: Int
-    )
-
-    data class Timezone(val description: String,
-                        val offset: String
-    )
-
-    data class Coordinates(val latitude: String,
-                           val longitude: String
-    )
+        private val randomUserName: TextView = View.randomName
+        private val randomUserAddress: TextView = View.randomAddress
+        private val randomUserEmail: TextView = View.randomMail
+        private val randomUserPicture: ImageView = View.randomPicture
+        private val randomUserDisplay = View.randomUserDisplay
 
 
+        fun getData(position: Int) {
+            val nomUser =
+                randomUser.results[position].name.first + "" + randomUser.results[position].name.last
+            val adresse =
+                randomUser.results[position].location.street.number.toString() + " " + randomUser.results[position].location.street.name + "" + randomUser.results[position].location.city + "" + randomUser.results[position].location.state
+            val email = randomUser.results[position].email
 
+            Picasso.get()
+                .load(randomUser.results[position].picture.medium)
+                .into(randomUserPicture)
+
+            randomUserName.text = nomUser
+            randomUserAddress.text = adresse
+            randomUserEmail.text = email
+
+            randomUserDisplay.setOnClickListener {
+                peopleClickListener.invoke(randomUser.results[position])
+            }
+        }
+    }
 }
-

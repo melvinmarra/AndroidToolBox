@@ -22,7 +22,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Attributes"/>
+        <activity android:name=".WebserviceUserDetails"/>
+        <activity android:name=".Attributes" />
         <activity android:name=".BleDetails" />
         <activity android:name=".BleDetailAdapter" />
         <activity android:name=".BluetoothService" />
