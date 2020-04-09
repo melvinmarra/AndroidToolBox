@@ -1,17 +1,21 @@
 package fr.isen.marra.toolboxandroid
 
+import android.Manifest
 import android.app.Activity
 import android.bluetooth.*
 import android.bluetooth.le.ScanCallback
 import android.bluetooth.le.ScanResult
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_bluetooth.*
@@ -25,6 +29,12 @@ class BluetoothActivity : AppCompatActivity() {
     private var mScanning: Boolean = false
     private lateinit var adapter: BluetoothScan
     private val devices = ArrayList<ScanResult>()
+    private val permManager = PermissionManager(this)
+    private val blePermission = arrayOf(
+            Manifest.permission.BLUETOOTH,
+            Manifest.permission.BLUETOOTH_ADMIN,
+            Manifest.permission.ACCESS_FINE_LOCATION
+    )
 
     private val bluetoothAdapter: BluetoothAdapter? by lazy(LazyThreadSafetyMode.NONE) {
         val bluetoothManager = getSystemService(Context.BLUETOOTH_SERVICE) as BluetoothManager
@@ -41,24 +51,33 @@ class BluetoothActivity : AppCompatActivity() {
         bleTextFailed.visibility = View.GONE
         play_iv.setImageResource(R.drawable.play_arrow)
 
-        play_iv.setOnClickListener {
-            when {
-                isBLEEnabled -> {
+        buttonRetourBle.setOnClickListener {
+            val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
+        }
 
-                    initBLEScan()
-                    initScan()
+        play_iv.setOnClickListener {
+            if (permManager.arePermissionsOk(blePermission)) {
+                when {
+                    isBLEEnabled -> {
+
+                        initBLEScan()
+                        initScan()
+                    }
+                    bluetoothAdapter != null -> {
+                        val enableBTIntent = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
+                        startActivityForResult(enableBTIntent, 44)
+                    }
+                    else -> {
+                        bleTextFailed.visibility = View.VISIBLE
+                    }
                 }
-                bluetoothAdapter != null -> {
-                    val enableBTIntent = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
-                    startActivityForResult(enableBTIntent, 44)
-                }
-                else -> {
-                    bleTextFailed.visibility = View.VISIBLE
-                }
+                recyclerViewBle.adapter = BluetoothScan(devices, ::onDeviceClicked)
+                recyclerViewBle.layoutManager = LinearLayoutManager(this)
+            } else {
+                permManager.requestMultiplePermissions(this, blePermission, 30)
             }
         }
-        recyclerViewBle.adapter = BluetoothScan(devices, ::onDeviceClicked)
-        recyclerViewBle.layoutManager = LinearLayoutManager(this)
     }
 
 
@@ -156,14 +175,31 @@ class BluetoothActivity : AppCompatActivity() {
         scanLeDevice(false)
     }
 
-    /*override fun onPause() {
-        super.onPause()
-        if (isBLEEnabled) {
-            scanLeDevice(false)
-            play_iv.setImageResource(R.drawable.play_arrow)
-            progressBar.visibility = View.GONE
-            divider.visibility = View.VISIBLE
-            state_tv.text = scanInProcess
+
+    open class PermissionManager(val context: Context){
+
+        fun requestAPermission(activity: Activity, perm: String, code: Int) {
+            ActivityCompat.requestPermissions(activity, arrayOf(perm), code)
         }
-    }*/
+
+        fun isPermissionOk(perm: String): Boolean {
+            val result = ContextCompat.checkSelfPermission(context, perm)
+            return result == PackageManager.PERMISSION_GRANTED
+        }
+
+        fun requestMultiplePermissions(activity: Activity, perms: Array<String>, code: Int) {
+            ActivityCompat.requestPermissions(activity, perms, code)
+        }
+
+        fun arePermissionsOk(perms: Array<String>): Boolean {
+            for (p in perms) {
+                if (isPermissionOk(p))
+                    continue
+                else
+                    return false
+            }
+            return true
+        }
+
+    }
 }

@@ -25,7 +25,7 @@ import kotlinx.android.synthetic.main.activity_permission.*
 class PermissionActivity : AppCompatActivity() {
 
     private val TAG = "Permission"
-    private val RECORD_REQUEST_CODE = 101
+
     private val permManager = PermissionManager(this)
     private val picturePermissions = arrayOf(
         Manifest.permission.CAMERA,
