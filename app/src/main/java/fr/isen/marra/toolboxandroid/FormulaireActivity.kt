@@ -125,9 +125,9 @@ class FormulaireActivity : AppCompatActivity() {
                 val thisDay = today.get(Calendar.DAY_OF_MONTH)
                 val birthDay = birth.get(Calendar.DAY_OF_MONTH)
 
-                    if(birthDay > thisDay){
-                        age--
-                    }
+                if(birthDay > thisDay){
+                    age--
+                }
             }
         }catch (e: ParseException){
             e.printStackTrace()
@@ -135,9 +135,3 @@ class FormulaireActivity : AppCompatActivity() {
         return age
     }
 }
-
-
-
-
-
-

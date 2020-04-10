@@ -13,6 +13,7 @@ import android.graphics.Bitmap
 import android.os.Bundle
 import android.provider.ContactsContract
 import android.provider.MediaStore
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -48,7 +49,7 @@ class PermissionActivity : AppCompatActivity() {
         imageView.setOnClickListener {
             showPictureDialog()
         }
-
+        //textPermissionAllow.visibility = View.GONE
         getContacts()
 
 
@@ -131,6 +132,7 @@ class PermissionActivity : AppCompatActivity() {
             cursor.close()
         }else{
            permManager.requestMultiplePermissions(this, contactPermission, 30)
+           textPermissionAllow.visibility = View.VISIBLE
         }
     }
 

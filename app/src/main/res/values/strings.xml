@@ -52,6 +52,7 @@
     <string name="pays">Pays</string>
     <string name="nom">Nom</string>
     <string name="show">Voir</string>
+    <string name="permissionBack">Sortez de cette activite puis entrez a nouveau pour voir apparaitre les contacts</string>
     <string name="saisie">Saisissez une valeur</string>
     <string name="contentBle">Image play et pause du scan ble</string>
     <string name="contentHomeCycle">Bouton pour acceder au cycle de vie de l application</string>

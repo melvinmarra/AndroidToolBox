@@ -18,6 +18,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/textPermissionAllow"
+        android:layout_width="239dp"
+        android:layout_height="wrap_content"
+        android:text="@string/permissionBack"
+        android:textAlignment="center"
+        android:textColor="#000"
+        android:textSize="16sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/contactRecycler"
+        app:layout_constraintEnd_toEndOf="@+id/contactRecycler"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/contactRecycler" />
+
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="54dp"
